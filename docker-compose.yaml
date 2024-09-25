@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  db:
+    image: bitnami/postgresql:15
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRESQL_DATABASE: addressbook_db
+      POSTGRESQL_USERNAME: addressbook
+      POSTGRESQL_PASSWORD: my_pass
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d/
+      - data-db:/bitnami/postgresql
+
+  addressbook:
+    image: addressbook:1
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./configuration:/app/config
+
+volumes:
+  data-db:

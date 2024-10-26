@@ -20,4 +20,4 @@ services:
       - ./configuration:/app/config
 
 volumes:
-  data-db:
+  data-db: {}
